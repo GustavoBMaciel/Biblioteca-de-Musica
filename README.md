@@ -16,10 +16,10 @@ Essas instruções farão com que você tenha uma cópia do projeto em execuçã
 - abrir janela de comando na pasta raiz, e executar o comando php artisan serve
 
 ## Construído com
- * [Laravel 5.6] (https://laravel.com/) - O framework web usado.
- * [PHP 7.2.8] (http://php.net/) - A linguagem usada.
- * [Mysql/MariaDB] (https://www.mysql.com/) - O Banco usado.
- * [Bootstrap 4.1] (https://getbootstrap.com/) - O componente front-end.
+ * [Laravel 5.6](https://laravel.com/) - O framework web usado.
+ * [PHP 7.2.8](http://php.net/) - A linguagem usada.
+ * [Mysql/MariaDB](https://www.mysql.com/) - O Banco usado.
+ * [Bootstrap 4.1](https://getbootstrap.com/) - O componente front-end.
  
  ## Autores
  * **Gustavo Maciel** - [GustavoBMaciel](https://github.com/GustavoBMaciel)
