@@ -10,7 +10,9 @@ Essas instruções farão com que você tenha uma cópia do projeto em execuçã
 * 3 - Php 7.2.8
 
 ## Instalando
-- Copiar o banco na basta '\app\bancoLimpo' e importar no MySql, nele contem usuário admin padrão.
+- Executar o apache e o mysql do Xampp
+- Entrar no site http://localhost/phpmyadmin/ criar um banco com o nome de bibmusica no formato utf8_unicode_ci
+- Copiar o banco na basta '\app\bancoLimpo' e importar no MySql, para o banco bibmusica. O banco limpo contem usuário admin padrão.
 - Login admin padrão: admin@admin.com.br
 - Senha admin padrão: admin1234
 - Abrir janela de comando na pasta raiz, e executar o comando php artisan serve
