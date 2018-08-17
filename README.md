@@ -5,12 +5,12 @@ Projeto desenvolvido para RunWeb
 Essas instruções farão com que você tenha uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste. O projeto está na pasta app:
 
 ## Pré-requisitos
-* 1 - xampp
-* 2 - laravel 5.6
-* 3 - php 7.2.8
+* 1 - Xampp
+* 2 - Laravel 5.6
+* 3 - Php 7.2.8
 
 ## Instalando
-- Copiar o banco na basta '\app\bancolimpo' e importar no MySql, nele contem usuário admin padrão.
+- Copiar o banco na basta '\app\bancoLimpo' e importar no MySql, nele contem usuário admin padrão.
 - Login admin padrão: admin@admin.com.br
 - Senha admin padrão: admin1234
 - Abrir janela de comando na pasta raiz, e executar o comando php artisan serve
