@@ -1,0 +1,33 @@
+.title-pg{
+    font-size: 2em;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.edit{
+    background: #0b980b;
+}
+.delete{
+    background: #9c0d0d;
+}
+.actions{
+    padding: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 0px 2px;
+}
+.actions:hover{
+    text-decoration: none;
+    color: #FFF;
+}
+.btn-add{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.tblcolor{
+background-color: lightgray;
+}
+.body2{
+    background-image: url("public/fundo/fundo.jpg");
+    
+}
