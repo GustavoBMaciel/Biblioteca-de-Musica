@@ -5,9 +5,9 @@ Projeto desenvolvido para RunWeb
 Essas instruções farão com que você tenha uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste:
 
 ## Pré-requisitos
-1 - xampp
-2 - laravel 5.6
-3 - php 7.2.8
+* 1 - xampp
+* 2 - laravel 5.6
+* 3 - php 7.2.8
 
 ## Instalando
 - Copiar o banco na basta 'bancolimpo' e atachar no sql, nele contem usuario admin padrao.
