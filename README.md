@@ -2,7 +2,7 @@
 Projeto desenvolvido para RunWeb
 
 ## Começando
-Essas instruções farão com que você tenha uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste:
+Essas instruções farão com que você tenha uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste. O projeto esta na pasta app:
 
 ## Pré-requisitos
 * 1 - xampp
@@ -10,7 +10,7 @@ Essas instruções farão com que você tenha uma cópia do projeto em execuçã
 * 3 - php 7.2.8
 
 ## Instalando
-- Copiar o banco na basta 'bancolimpo' e atachar no sql, nele contem usuario admin padrao.
+- Copiar o banco na basta '\app\bancolimpo' e atachar no sql, nele contem usuario admin padrao.
 - Login admin padrao: admin@admin.com.br
 - Senha admin padrao: admin1234
 - abrir janela de comando na pasta raiz, e executar o comando php artisan serve
@@ -25,4 +25,4 @@ Essas instruções farão com que você tenha uma cópia do projeto em execuçã
  * **Gustavo Maciel** - [GustavoBMaciel](https://github.com/GustavoBMaciel)
  
  ## Observações
- Projeto foi feito com o docker compose, porem nunca tive contato com ele, consegui um exemplo de como utlizar, mas nao sei se foi configurado corretamente. Espero que consigam avalisar utilizando as orientações acima. 
+ No projeto utilizei o docker compose como solicitado, porem nunca tive contato com ele, consegui um exemplo de como utlizar, mas nao sei se foi configurado corretamente. Espero que consigam avalisar utilizando as orientações acima. 
