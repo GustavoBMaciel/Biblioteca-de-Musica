@@ -7,14 +7,17 @@ Essas instruções farão com que você tenha uma cópia do projeto em execuçã
 ## Pré-requisitos
 * 1 - Xampp
 * 2 - Laravel 5.6
+* 3 - Composer 1.7.2
 * 3 - Php 7.2.8
 
 ## Instalando
-- Executar o apache e o mysql do Xampp
+- Baixar o [Xampp](https://www.apachefriends.org/xampp-files/7.2.8/xampp-win32-7.2.8-0-VC15-installer.exe) e executar o apache e o mysql.
+- Baixar o [Composer](https://getcomposer.org/Composer-Setup.exe) e executar.
 - Entrar no site http://localhost/phpmyadmin/ criar um banco com o nome de bibmusica no formato utf8_unicode_ci
 - Copiar o banco na basta '\app\bancoLimpo' e importar no MySql, para o banco bibmusica. O banco limpo contem usuário admin padrão.
 - Login admin padrão: admin@admin.com.br
 - Senha admin padrão: admin1234
+- Abrir o arquivo .env dentro da pasta '\app' e verificar se o nome do banco, usuario, e senha estão corretos.
 - Abrir janela de comando na pasta raiz, e executar o comando php artisan serve
 
 ## Construído com
