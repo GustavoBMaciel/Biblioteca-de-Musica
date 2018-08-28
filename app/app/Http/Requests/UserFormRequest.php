@@ -26,9 +26,9 @@ class UserFormRequest extends FormRequest
         return [
 
                 'name'        => 'required|min:3|max:100|',
-                'imagem'      => 'required|image|max:2048|',
-                'permissao'   => 'required|min:3|max:100|',
-                'email'       => 'required|string|email|max:255|unique:users',
+                //*'imagem'      => 'required|image|max:2048|',
+                'permissao'   => 'required',
+                'email'       => 'required|string|email|max:255|unique:users,id,'.$this->get('id'),
                 'password'    => 'required|string|min:6|confirmed',
 
         ];

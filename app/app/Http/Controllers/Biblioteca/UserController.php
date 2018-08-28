@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Albun;
 use App\Models\User;
 use App\Models\Banda;
+use App\Http\Requests\UserFormRequest;
 use Auth;
 use Image;
 
@@ -32,37 +33,30 @@ class UserController extends Controller
 
         $usersEdit = $this->user->find($id);
         
+        //*dd($usersEdit);
     	return view('profileupdate', compact('usersEdit'));
     }
 
 
-    public function update(Request $request, $id){
+    public function update(UserFormRequest $request, $id){
         // Handle the user upload of imagem
 
         $dataForm = $request->all();
-
         $usersEditado = $this->user->find($id);
 
-            /*if ( !$dataForm['password'] == '') 
-            {
-                $updates->$usersEditado->update(['password' => bcrypt($dataForm['password'])]);
-            }
+        if (!isset ($dataForm['imagem']))
+        {
+            $update = $usersEditado->update([
+                'name' => $dataForm['name'],
+                'imagem' => $usersEditado->imagem,
+                'email' => $dataForm['email'],
+                'permissao' => $dataForm['permissao'],
+                'password' => bcrypt($dataForm['password'])]);
 
-            $update = $usersEditado->update(['name' => $dataForm['name'],
-             'email' => $dataForm['email'],
-             'permissao' => $dataForm['permissao'],
-            ]);
-
-            $imagem = $request->file('imagem');
-    		$filename = time() . '.' . $imagem->getClientOriginalExtension();
-    		Image::make($imagem)->resize(300, 300)->save( public_path('\imgUser/' . $filename ) );
-            $user->imagem = $filename;
-            $user->name = $dataForm['name'];
-            $user->email = $dataForm['email'];
-            $user->permissao = $dataForm['permissao'];
-            $user->password = bcrypt($dataForm['password']);
-            $user->update();*/
-
+                return redirect()->route('users.index');
+        }
+        else{
+            
             $imageName = $request->id . '.' .
             $request->file('imagem')->getClientOriginalName();
         
@@ -74,6 +68,7 @@ class UserController extends Controller
                 'email' => $dataForm['email'],
                 'permissao' => $dataForm['permissao'],
                 'password' => bcrypt($dataForm['password'])]);
+              }
 
             return redirect()->route('users.index');
     }

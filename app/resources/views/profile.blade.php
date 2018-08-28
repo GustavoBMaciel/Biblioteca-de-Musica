@@ -11,21 +11,27 @@
     </div>
     @endif
 
-    <div class="row">
-        <div class="col-md-10 ">
+    <h2 class="panel-heading">Usuarios</h2>
+    <a href="{{url('/home')}}" class="alert alert-success fas fa-undo  "> Voltar</a>
+    <a href="{{url('/register')}}" class="alert alert-success fas fa-plus-square"> Cadastrar</a>
+
+    <div class="form-row">
+            <div class="form-group col-md-4 ">
             @foreach($users as $user)
             <img src="\imgUser/{{ $user->imagem }}" style="width:150px; height:150px; border-radius:50%; margin-right:25px;">
             <h2>{{ $user->name }}</h2>
             <p>Email: {{$user->email}}</p>
+            <p>Permissao: {{$user->permissao}}</p>
             <a href="{{route('users.edit', $user->id)}}" class="alert alert-success fas fa-pencil-alt">Alterar Dados</a>
 
             {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'DELETE']) !!}
             {!! Form::submit("Deletar: $user->name", ['class' => 'alert alert-danger fas fa-trash-alt']) !!}
             {!! Form::close() !!}
-            <div></div>
-            </form>
-            @endforeach
+
         </div>
     </div>
+    @endforeach
+
+
 </div>
 @endsection
