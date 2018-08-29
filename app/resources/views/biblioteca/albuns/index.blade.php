@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
 
-      <div class="panel-heading">Albuns</div>
+      <h2 class="panel-heading">Albuns</h2>
 
       <a href="{{url('/home')}}" class="alert alert-success fas fa-undo  "> Voltar</a>
       @if ( Auth::check() ) 

@@ -9,6 +9,7 @@ use App\Models\Banda;
 use App\Models\Musica;
 use Auth;
 use App\Http\Requests\BandaFormRequest;
+use App\Http\Requests\Banda2FormRequest;
 
 class BandaController extends Controller
 {
@@ -118,7 +119,7 @@ class BandaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BandaFormRequest $request, $id)
+    public function update(Banda2FormRequest $request, $id)
     {
         $this->middleware('users');
 
@@ -126,16 +127,29 @@ class BandaController extends Controller
 
         $bandaEditado = $this->banda->find($id);
 
-        $imageName = $request->id . '.' .
-        $request->file('imagem')->getClientOriginalName();
-    
-        $image = $request->file('imagem')->move(base_path() . '\public\imgBanda', $imageName);
+        if (!isset ($dataForm['imagem']))
+        {
+            $update = $bandaEditado->update([
+                'nome' => $dataForm['nome'],
+                'imagem' => $bandaEditado->imagem,
+                'genero' => $dataForm['genero'],
+                'descricao' => $dataForm['descricao']]);
 
-          $update = $bandaEditado->update([
-            'nome' => $dataForm['nome'],
-            'imagem' => $imageName,
-            'genero' => $dataForm['genero'],
-            'descricao' => $dataForm['descricao']]);
+                return redirect()->route('bandas.index');
+        }
+        else{
+
+                $imageName = $request->id . '.' .
+                $request->file('imagem')->getClientOriginalName();
+            
+                $image = $request->file('imagem')->move(base_path() . '\public\imgBanda', $imageName);
+
+                $update = $bandaEditado->update([
+                    'nome' => $dataForm['nome'],
+                    'imagem' => $imageName,
+                    'genero' => $dataForm['genero'],
+                    'descricao' => $dataForm['descricao']]);
+            }
 
         if ( $update )
         return redirect()->route('bandas.index');

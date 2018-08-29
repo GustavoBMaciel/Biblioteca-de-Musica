@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-  <div class="panel-heading">{{$usersEdit->name or 'Novo'}}</div>
+  <h2 class="panel-heading">{{$usersEdit->name}}</h2>
 
 
   @if( isset ($errors) && count ($errors) > 0 )

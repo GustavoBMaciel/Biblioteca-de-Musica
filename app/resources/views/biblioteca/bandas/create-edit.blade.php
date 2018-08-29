@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
 
+  <h2 class="panel-heading">{{$bandaEdit->nome or 'Novo'}}</h2>
 
   @if( isset ($errors) && count ($errors) > 0 )
   <div class="alert alert-danger">
