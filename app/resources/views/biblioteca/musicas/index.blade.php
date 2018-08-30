@@ -37,7 +37,7 @@
             </a>
 
             {!! Form::open(['route' => ['musicas.destroy', $musica->id], 'method' => 'DELETE']) !!}
-          <button type="submit" class="alert alert-danger fas fa-trash-alt"> Deletar Musica: {{$musica->nome}}</button>
+             <button type="submit" class="alert alert-danger fas fa-trash-alt"> Deletar Musica: {{$musica->nome}}</button>
             {!! Form::close() !!}
               @endif
               @endif

@@ -41,6 +41,8 @@ class AdicionaController extends Controller
      */
     public function store(Request $request)
     {
+        if($request != '')
+        {
         $dataForm = $request->all();
   
         if ($dataForm)
@@ -53,6 +55,11 @@ class AdicionaController extends Controller
         }
           
         return redirect()->back()->with('sucesso', 'Musica Incluida com Sucesso!!');
+    }
+    else
+    {
+        return redirect()->back()->with('erro', 'Não há musicas para incluir!!');
+    }
           
     }
 
@@ -64,9 +71,11 @@ class AdicionaController extends Controller
      */
     public function show($id)
     {
-        $albunAdiciona = Albun::select('id','nome','ano','capa')->get();
+        $albunAdiciona = Albun::select('id','nome','ano','capa')->where('id', '=', $id)->get();
 
-        $idMusica = Musica::select('id','nome', 'compositor')->get();
+        $musicas = Musica::select('id','nome', 'compositor')->get();
+        $idMusica = Musica::select('id')->get();
+
 
         $cont = 1;
 
@@ -74,9 +83,9 @@ class AdicionaController extends Controller
 
         $idMusicasalbuns = DB::table('musicas')->join('musicasalbuns','musicasalbuns.idMusica', '=', 'musicas.id')
                                               ->join('albuns','musicasalbuns.idAlbum', '=', 'albuns.id')
-                                              ->select('musicas.nome')->where('musicasalbuns.idAlbum', '=', $id)->pluck('nome');
+                                              ->select('musicas.nome', 'musicas.id')->where('musicasalbuns.idAlbum', '=', $id)->get()->all();
     
-        return view('biblioteca.albuns.adicionamusica', compact('title', 'albunAdiciona','idMusicasalbuns', 'idMusica', 'cont' ));
+        return view('biblioteca.albuns.adicionamusica', compact('title', 'albunAdiciona','idMusicasalbuns', 'idMusica', 'musicas', 'cont' ));
     }
 
     /**
@@ -131,13 +140,19 @@ class AdicionaController extends Controller
      */
     public function destroy($id)
     {
-        //*dd($id);
 
+        if($id != "")
+        {
         $adicionaDestroy = Musicasalbun::select('idMusica')->where('idMusica', '=', $id);
 
         $delete = $adicionaDestroy->delete();
 
         return redirect()->back()->with('sucesso', 'Musica Deletada com Sucesso!!');
+        }
+        else
+        {
+            return redirect()->back()->with('erro', 'Não há musicas para deletar!!');
+        }
           
     }
 }

@@ -13,6 +13,7 @@ use DB;
 
 use App\Http\Controllers\Auth;
 use App\Http\Requests\AlbunFormRequest;
+use App\Http\Requests\Albun2FormRequest;
 
 
 class AlbunController extends Controller
@@ -35,11 +36,12 @@ class AlbunController extends Controller
     {
         $title = 'Albuns';
 
-        $idBandas = DB::table('bandas')->join('albuns','albuns.idBanda', '=', 'bandas.id')
-                                              ->select('bandas.nome')->pluck('nome');
+        $albuns = DB::table('albuns')->join('bandas','bandas.id', '=', 'albuns.idBanda')
+        ->select('albuns.id as id', 'albuns.capa as capa', 'albuns.nome as albuns', 'albuns.ano as ano', 'bandas.nome as banda')
+        ->get();
 
-        $albuns = $this->albun->paginate($this->totalPage);
-        return view ('biblioteca.albuns.index', compact('albuns', 'title', 'idBandas'));
+        //*dd($albuns);
+        return view ('biblioteca.albuns.index', compact('albuns', 'title'));
     }
 
     /**
@@ -52,9 +54,8 @@ class AlbunController extends Controller
         $title = 'Cadastrar Novo Albun';
 
         $idBanda = Banda::select('id','nome')->get()->all();
-        $idMusica = Musica::select('id','nome')->get()->all();
     
-        return view('biblioteca.albuns.create-edit',compact('title', 'idBanda', 'idMusica'));
+        return view('biblioteca.albuns.create-edit',compact('title', 'idBanda'));
     }
 
     /**
@@ -81,11 +82,6 @@ class AlbunController extends Controller
       
           if ($insert)
           {
-           $ide = Albun::select('id')->take(1);
- 
-              Musicasalbun::insert(['idAlbum' => $insert->id,
-              'idMusica' => $dataForm['idMusica']]);
-
             return redirect()->route('albuns.index');
           }
           else
@@ -144,32 +140,38 @@ class AlbunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AlbunFormRequest $request, $id)
+    public function update(Albun2FormRequest $request, $id)
     {
         $dataForm = $request->all();
 
-        //*dd($dataForm );
+        $albunEditado = $this->albun->find($id);
 
-        $imageName = $request->id . '.' .
-        $request->file('capa')->getClientOriginalName();
-    
-        $image = $request->file('capa')->move(
-          base_path() . '\public\capas', $imageName);
+        if (!isset ($dataForm['capa']))
+        {
+          $affectedRows = Albun::where('id', $id)->update([
+            'nome' => $dataForm['nome'],
+            'capa' => $albunEditado->capa,
+            'idbanda' => $dataForm['idBanda'],
+            'ano' => $dataForm['ano']]);
 
-        $affectedRows = Albun::where('id', $id)->update([
-        'nome' => $dataForm['nome'],
-        'capa' => $imageName,
-        'idbanda' => $dataForm['idBanda'],
-        'ano' => $dataForm['ano']]);
-  
+            return redirect()->route('albuns.index');
+          }
+          else
+          {
+              $imageName = $request->id . '.' .
+              $request->file('capa')->getClientOriginalName();
+          
+              $image = $request->file('capa')->move(
+                base_path() . '\public\capas', $imageName);
+
+              $affectedRows = Albun::where('id', $id)->update([
+              'nome' => $dataForm['nome'],
+              'capa' => $imageName,
+              'idbanda' => $dataForm['idBanda'],
+              'ano' => $dataForm['ano']]);
+          }
         if ($affectedRows)
         {
-          /*
-         $ide = Albun::select('id')->take(1);
-
-         Musicasalbun::update(['idAlbum' => $insert->id,
-         'idMusica' => $dataForm['idMusica']]);
-        */
           return redirect()->route('albuns.index');
         }
         else

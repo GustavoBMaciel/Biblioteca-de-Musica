@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AlbunFormRequest extends FormRequest
+class Albun2FormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,9 @@ class AlbunFormRequest extends FormRequest
      */
     public function rules()
     {
-        return ['idBanda'        => 'required',
-                'capa'           => 'required|image|max:2048|',
+        return [
+            'idBanda'        => 'required',
+                'capa'           => 'image|max:2048|',
                 'nome'           => 'required|min:3|max:100|unique:albuns,id,'.$this->get('id'),
                 'ano'            => 'required|numeric',
         ];

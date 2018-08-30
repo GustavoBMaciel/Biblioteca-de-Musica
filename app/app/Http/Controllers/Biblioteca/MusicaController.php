@@ -8,6 +8,7 @@ use App\Models\Albun;
 use App\Models\Banda;
 use App\Models\Musica;
 use App\Http\Controllers\Auth;
+use App\Models\Musicasalbun;
 use App\Http\Requests\MusicaFormRequest;
 
 class MusicaController extends Controller
@@ -125,11 +126,15 @@ class MusicaController extends Controller
      */
     public function destroy($id)
     {
+        $adicionaDestroy = Musicasalbun::select('idMusica')->where('idMusica', '=', $id);
+
+        $deleteAdiciona = $adicionaDestroy->delete();
+
         $musicaDestroy = $this->musica->find($id);
 
         $delete = $musicaDestroy->delete();
     
-        if ( $delete )
+        if ( $delete && $deleteAdiciona )
         return redirect()->route('musicas.index');
         else
         return redirect()->route('musicas.show', $id)->with(['errors' => 'Falha ao deletar']);

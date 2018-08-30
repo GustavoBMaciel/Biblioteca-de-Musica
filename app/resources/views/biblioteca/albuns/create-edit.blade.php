@@ -36,14 +36,7 @@
   <div class="form-group col-md-12">
     {!! Form::text('ano', null, ['class' => 'form-control', 'placeholder' => 'Ano:']) !!}
   </div>
-  <div class="form-group col-md-12">
-    <select name="idMusica" class="form-control">
-      <option value="">Escolha a Musica</option>
-      @foreach ($idMusica as $musica)
-      <option value="{{$musica->id}}">{{$musica->nome}}</option>
-      @endforeach
-    </select>
-</div>
+  
   <div class="form-group col-md-12">
     <a href="{{route('albuns.index')}}" class="btn btn-success alert alert-success">Voltar</a>
     {!! Form::submit('Enviar', ['class' => 'btn btn-success alert alert-success']) !!}
