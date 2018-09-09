@@ -14,7 +14,7 @@ use Image;
 class UserController extends Controller
 {
     private $users;
-    private $totalPage = 5;
+    private $totalPage = 3;
 
     public function __construct(User $user)
     {

@@ -19,7 +19,7 @@ use App\Http\Requests\Albun2FormRequest;
 class AlbunController extends Controller
 {
     private $albun;
-    private $totalPage = 20;
+    private $totalPage = 3;
   
     public function __construct(Albun $albun)
     {
@@ -38,7 +38,7 @@ class AlbunController extends Controller
 
         $albuns = DB::table('albuns')->join('bandas','bandas.id', '=', 'albuns.idBanda')
         ->select('albuns.id as id', 'albuns.capa as capa', 'albuns.nome as albuns', 'albuns.ano as ano', 'bandas.nome as banda')
-        ->get();
+        ->paginate($this->totalPage);
 
         //*dd($albuns);
         return view ('biblioteca.albuns.index', compact('albuns', 'title'));

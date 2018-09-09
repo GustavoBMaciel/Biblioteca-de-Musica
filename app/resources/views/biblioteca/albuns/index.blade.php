@@ -39,6 +39,6 @@
         </div>
         @endforeach
       </div>
-
+      {!! $albuns->links() !!}
     </div>
   @endsection

@@ -50,5 +50,4 @@
 
       {!! $musicas->links() !!}
     </div>
-  </div>
   @endsection

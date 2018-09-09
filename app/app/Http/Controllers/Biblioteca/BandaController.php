@@ -14,7 +14,7 @@ use App\Http\Requests\Banda2FormRequest;
 class BandaController extends Controller
 {
     private $banda;
-    private $totalPage = 20;
+    private $totalPage = 3;
   
     public function __construct(banda $banda)
     {

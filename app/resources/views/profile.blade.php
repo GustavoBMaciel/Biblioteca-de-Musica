@@ -31,5 +31,6 @@
             @endforeach
                
     </div>
+    {!! $users->links() !!}
 </div>
 @endsection

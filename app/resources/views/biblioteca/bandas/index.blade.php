@@ -39,10 +39,5 @@
         @endforeach
           </div>
       {!! $bandas->links() !!}
-
-
-
-
-    
   </div>
   @endsection
